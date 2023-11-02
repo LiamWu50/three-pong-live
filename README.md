@@ -1,10 +1,10 @@
-# ThreeJS+Vite+TypeScript
+# three-pong-live
 
  ## 🌍 预览
 
-[预览入口（Github）](https://liamwu50.github.io/three-vite-starter)
+[预览入口（Github）](https://liamwu50.github.io/three-pong-live)
 
-![banner](https://raw.githubusercontent.com/LiamWu50/three-vite-starter/main/public/banner.png)
+![banner](https://raw.githubusercontent.com/LiamWu50/three-pong-live/main/public/banner.png)
 
 ## 💡 查看示例
 
@@ -17,7 +17,7 @@ pnpm install && pnpm build
 ### 📦 安装依赖
 
 ```bash
-cd three-vite-starter && pnpm install
+cd three-pong-live && pnpm install
 ```
 
 ### 💻 启动示例
