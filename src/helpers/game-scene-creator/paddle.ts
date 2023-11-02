@@ -17,8 +17,6 @@ const MATERIAL = new MeshNormalMaterial()
 export default class Paddle {
   private scene: Scene
   private bodundaries: Vector2
-  private geometry: CapsuleGeometry
-  private material: MeshNormalMaterial
   public mesh: Mesh
   private collisionHelper: Mesh
 
@@ -26,8 +24,6 @@ export default class Paddle {
     this.scene = scene
     this.bodundaries = bodundaries
 
-    this.geometry = GEOMETRY
-    this.material = MATERIAL
     this.mesh = new Mesh(GEOMETRY, MATERIAL)
     this.collisionHelper = new Mesh(
       HELPER_GEOMETRY,
