@@ -49,6 +49,11 @@ export default class Ball {
     this.scene.add(this.pointCollision)
   }
 
+  private resetVelocity() {
+    this.speed = 15
+    this.velocity.normalize().multiplyScalar(this.speed)
+  }
+
   public update(dt: number) {
     const dir = this.velocity.clone().normalize()
     this.raycaster.set(this.mesh.position, dir)
@@ -76,20 +81,22 @@ export default class Ball {
         Math.sign(paddle.mesh.position.z) === Math.sign(this.velocity.z)
     )
 
-    console.log('paddle', paddle)
-
     const [intersection] = this.raycaster.intersectObjects(
       paddle?.mesh.children as Object3D[]
     )
 
     if (intersection) {
-      this.pointCollision.position.copy(intersection.point)
+      // this.pointCollision.position.copy(intersection.point)
 
       if (intersection.distance < s.length()) {
         tPos.copy(intersection.point)
         const d = s.length() - intersection.distance
 
-        this.velocity.reflect(intersection.normal as Vector3)
+        const normal = intersection.normal as Vector3
+        normal.y = 0
+        normal.normalize()
+        this.velocity.reflect(normal)
+
         const ds = this.velocity.clone().normalize().multiplyScalar(d)
         tPos.add(ds)
 

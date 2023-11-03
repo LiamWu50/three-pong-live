@@ -12,6 +12,7 @@ import {
 } from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry'
 
+import AIController from './ai-controller'
 import Ball from './ball'
 import Paddle from './paddle'
 
@@ -26,6 +27,7 @@ export default class GameSceneCreator {
   private pcPaddle!: Paddle
   private cursor = new Vector2(0, 0)
   private raycaster = new Raycaster()
+  private aiController!: AIController
 
   constructor(scene: Scene, camera: Camera) {
     this.scene = scene
@@ -36,6 +38,7 @@ export default class GameSceneCreator {
     this.createPlaneScene()
     this.createBall()
     this.createWall()
+    this.aiController = new AIController(this.pcPaddle, this.ball)
     this.tic()
 
     window.addEventListener('mousemove', (e: MouseEvent) => {
@@ -110,7 +113,7 @@ export default class GameSceneCreator {
     }
 
     this.ball.update(deltaTime)
-    this.pcPaddle.setX(this.ball.mesh.position.x)
+    this.aiController.update(deltaTime)
 
     requestAnimationFrame(() => {
       this.tic()
