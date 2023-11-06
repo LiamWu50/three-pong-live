@@ -86,8 +86,6 @@ export default class Ball {
     )
 
     if (intersection) {
-      // this.pointCollision.position.copy(intersection.point)
-
       if (intersection.distance < s.length()) {
         tPos.copy(intersection.point)
         const d = s.length() - intersection.distance

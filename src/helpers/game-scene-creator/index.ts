@@ -106,14 +106,18 @@ export default class GameSceneCreator {
     this.raycaster.setFromCamera(this.cursor, this.camera)
     const [intersection] = this.raycaster.intersectObject(this.plane)
 
-    if (intersection) {
-      const nextX = intersection.point.x
-      const prevX = this.playerPaddle.mesh.position.x
-      this.playerPaddle.setX(MathUtils.lerp(prevX, nextX, 0.1))
-    }
+    const dt = deltaTime / 10
 
-    this.ball.update(deltaTime)
-    this.aiController.update(deltaTime)
+    for (let i = 0; i < 10; i++) {
+      if (intersection) {
+        const nextX = intersection.point.x
+        const prevX = this.playerPaddle.mesh.position.x
+        this.playerPaddle.setX(MathUtils.lerp(prevX, nextX, 0.05))
+      }
+
+      this.ball.update(dt)
+      this.aiController.update(dt)
+    }
 
     requestAnimationFrame(() => {
       this.tic()
